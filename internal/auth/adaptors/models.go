@@ -21,11 +21,46 @@ type Credential struct {
 	UpdatedAt       pgtype.Timestamptz
 }
 
+type Endpoint struct {
+	ID         pgtype.UUID
+	ProjectID  pgtype.UUID
+	Name       string
+	Method     string
+	Scope      string
+	FunctionID pgtype.UUID
+	CreatedAt  pgtype.Timestamptz
+}
+
+type Function struct {
+	ID        pgtype.UUID
+	ProjectID pgtype.UUID
+	Name      string
+	Language  string
+	Path      string
+	CreatedBy []byte
+	CreatedAt pgtype.Timestamptz
+}
+
+type Project struct {
+	ID          pgtype.UUID
+	Name        string
+	Description pgtype.Text
+	CreatedBy   []byte
+	CreatedAt   pgtype.Timestamptz
+}
+
 type User struct {
 	ID          []byte
 	Name        string
 	DisplayName string
 	Icon        pgtype.Text
+}
+
+type UserProject struct {
+	UserID    []byte
+	ProjectID pgtype.UUID
+	Role      pgtype.Text
+	CreatedAt pgtype.Timestamptz
 }
 
 type UserSession struct {
